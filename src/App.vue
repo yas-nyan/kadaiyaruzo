@@ -2,6 +2,7 @@
   <div id="app">
     <navbar></navbar>
     <workingspace></workingspace>
+    <appfooter></appfooter>
   </div>
 </template>
 
@@ -9,12 +10,14 @@
 //import Hello from "./components/Hello";
 import Navbar from "./components/Navbar";
 import Workingspace from "./components/Workingspace";
+import Appfooter from "./components/AppFooter";
 export default {
   name: "app",
   components: {
     //Hello,
     Navbar,
-    Workingspace
+    Workingspace,
+    Appfooter
   }
 };
 </script>
