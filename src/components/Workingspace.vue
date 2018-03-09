@@ -68,22 +68,33 @@ export default {
     };
   },
   created: function() {
-    this.apply();
+    //もしデータが残っていたら適用する．
+    try {
+      let old_JSON = localStorage.data;
+      let old_counter = parseInt(localStorage.tabCounter);
+      let obj = JSON.parse(old_JSON);
+      //nullもobjなのでparse出来てしまう
+      if (obj === null || old_counter == NaN) {
+        throw "null error";
+      }
+      this.tabs = obj;
+      this.tabCounter = old_counter;
+    } catch (e) {}
   },
   watch: {
     tabs: {
-      handler: function() {
+      handler: function(now, old) {
         //localstorageにtabsを保存
-        localStorage.setItem("data", JSON.stringify(this.tabs));
-        //counterも保存
-        localStorage.setItem("counter", this.tabCounter);
-        return this.tabs;
+        localStorage.setItem("data", JSON.stringify(now));
+        return now;
       },
       deep: true
     },
-    tabCounter: function() {
-      localStorage.setItem("counter", this.tabCounter);
-      return this.tabCounter;
+    tabCounter: function(now, old) {
+      console.log(`old:${old}`);
+      console.log(`NEW:${now}`);
+      localStorage.setItem("tabCounter", now);
+      return now;
     }
   },
   methods: {
@@ -96,6 +107,7 @@ export default {
     },
     newTab() {
       //this.tabs.push(this.tabCounter++);
+      console.log(this.tabCounter);
       this.tabs.push({
         id: this.tabCounter++,
         title: "新しいノート",
@@ -106,19 +118,9 @@ export default {
     },
     closeAllTabs() {
       let is_ok = confirm("本当によろしいですか？");
-      alert(this.tabs);
       if (is_ok) {
         this.tabs = [];
-      }
-    },
-    apply() {
-      try {
-        let old_tabs = JSON.parse(localStorage.getItem("data"));
-        let old_counter = Number(localStorage.getItem("counter"));
-        this.tabs = old_tabs;
-        this.tabCounter = old_counter;
-      } catch (e) {
-        console.log("無いよ");
+        this.tabCounter = 0;
       }
     }
   }
