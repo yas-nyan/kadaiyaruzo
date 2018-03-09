@@ -91,8 +91,6 @@ export default {
       deep: true
     },
     tabCounter: function(now, old) {
-      console.log(`old:${old}`);
-      console.log(`NEW:${now}`);
       localStorage.setItem("tabCounter", now);
       return now;
     }
@@ -106,8 +104,6 @@ export default {
       }
     },
     newTab() {
-      //this.tabs.push(this.tabCounter++);
-      console.log(this.tabCounter);
       this.tabs.push({
         id: this.tabCounter++,
         title: "新しいノート",
