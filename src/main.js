@@ -8,8 +8,7 @@ import feather from 'vue-icon'
 import App from './App'
 import Config from "./config/config"
 import routes from './routes'
-import About from './about'
-import Top from './top'
+
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
