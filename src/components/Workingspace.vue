@@ -105,9 +105,12 @@ export default {
   },
   methods: {
     closeTab(id) {
-      for (let index in this.tabs) {
-        if (this.tabs[index].id === id) {
-          this.tabs.splice(index, 1);
+      let is_ok = confirm("このノートを削除します。本当によろしいですか？");
+      if (is_ok) {
+        for (let index in this.tabs) {
+          if (this.tabs[index].id === id) {
+            this.tabs.splice(index, 1);
+          }
         }
       }
     },
@@ -128,9 +131,8 @@ export default {
       }
     },
     countPureTextLength(text) {
-      let count = text.replace(/\r?\n/g,"").length;
+      let count = text.replace(/\r?\n?\s/g, "").length;
       return count;
-
     }
   }
 };
