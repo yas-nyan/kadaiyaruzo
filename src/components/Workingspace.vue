@@ -18,7 +18,7 @@
               <b-input :id="`target-${tab.id}`" class="" v-model="tab.target" type="number"></b-input>
             </b-col>
             <b-col lg="2">
-              現在の文字数：{{tab.content.length}}
+              現在の文字数：{{countPureTextLength(tab.content)}}
             </b-col>
             <b-col lg="1">
               <b-btn size="sm" variant="danger" class="float-right" @click="()=>closeTab(tab.id)">
@@ -118,6 +118,11 @@ export default {
         this.tabs = [];
         this.tabCounter = 0;
       }
+    },
+    countPureTextLength(text) {
+      let count = text.replace(/\r?\n/g,"").length;
+      return count;
+
     }
   }
 };
