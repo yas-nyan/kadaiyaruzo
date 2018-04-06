@@ -124,7 +124,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .workingSpace {
-  height: 500px;
+  //height: 500px;
   label {
     vertical-align: middle;
   }

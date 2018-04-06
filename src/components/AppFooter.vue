@@ -7,7 +7,7 @@
       <p></p>
       <p>&copy; {{year}} {{copy}} All Rights Reserved.</p>
     </div>
-    
+
   </div>
 </template>
 
@@ -25,10 +25,8 @@ export default {
 
 <style lang="scss" scoped>
 .footer {
-  position: fixed;
-  bottom: 0px;
+  position: relative;
   width: 100%;
-  height: 200px;
   background-color: gray;
   padding: 30px;
   &__text {
