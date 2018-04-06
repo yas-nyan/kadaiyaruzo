@@ -1,23 +1,20 @@
 <template>
   <div id="app">
     <navbar></navbar>
-    <workingspace></workingspace>
+    <router-view></router-view>
     <appfooter></appfooter>
   </div>
 </template>
 
 <script>
-//import Hello from "./components/Hello";
 import Navbar from "./components/Navbar";
-import Workingspace from "./components/Workingspace";
 import Appfooter from "./components/AppFooter";
 export default {
   name: "app",
   components: {
     //Hello,
     Navbar,
-    Workingspace,
-    Appfooter
+    Appfooter,
   }
 };
 </script>
