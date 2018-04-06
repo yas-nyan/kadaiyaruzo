@@ -5,22 +5,30 @@
         <!-- Render Tabs -->
         <b-tab :title="`${tab.title}`" v-for="tab in tabs" :key="tab.id">
           <b-row>
-            <b-col lg="1">
+            <b-col md="1">
               <label :for="`title-${tab.id}`">タイトル:</label>
             </b-col>
-            <b-col lg="4">
+            <b-col md="4">
               <b-input :id="`title-${tab.id}`" class="" v-model="tab.title"></b-input>
             </b-col>
-            <b-col lg="1">
+            <b-col md="1">
               <label :for="`target-${tab.id}`" >目標数:</label>
             </b-col>
-            <b-col lg="1">
+            <b-col md="1">
               <b-input :id="`target-${tab.id}`" class="" v-model="tab.target" type="number"></b-input>
             </b-col>
-            <b-col lg="2">
+            <b-col md="2">
               現在の文字数：{{countPureTextLength(tab.content)}}
             </b-col>
-            <b-col lg="1">
+            <b-col md="2">
+
+              <b-progress v-if="tab.target" :max="1">
+                <b-progress-bar :value="countPureTextLength(tab.content) / tab.target" show-progress animated>
+                  {{(100 * countPureTextLength(tab.content) / tab.target).toFixed()}}%
+                </b-progress-bar>
+              </b-progress>
+            </b-col>
+            <b-col md="1">
               <b-btn size="sm" variant="danger" class="float-right" @click="()=>closeTab(tab.id)">
                 ノートを削除
               </b-btn>
@@ -28,7 +36,7 @@
           </b-row>
           <br>
           <b-row>
-            <b-col lg="12">
+            <b-col md="12">
               <b-form-textarea v-model="tab.content" placeholder="何か書きましょう" :rows="30" :max-rows="40">
               </b-form-textarea>
             </b-col>
